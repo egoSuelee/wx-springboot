@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.warelucent.wx.dao.supermarket.SupermarketDao">
+    <resultMap id="SignDayResultMap" type="com.warelucent.wx.domain.SignDayEntity">
+        <result column="cWeixinID" property="openid" />
+        <result column="dDate" property="dDate" />
+        <result column="dDatetime" property="dDatetime" />
+    </resultMap>
+
+    <parameterMap id="SignDayEntity" type="com.warelucent.wx.domain.SignDayEntity"/>
+
+    <sql id="SignDay_Column_List">
+        cWeixinID, dDate, dDatetime
+    </sql>
+
+    <select id="querySignDays" resultMap="SignDayResultMap" parameterType="java.lang.String">
+        select
+        <include refid="SignDay_Column_List" />
+        from Wei_Xin_Vip_Check_In
+        where cWeixinID = #{openid}
+    </select>
+
+</mapper>
